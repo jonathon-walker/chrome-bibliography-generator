@@ -23,8 +23,8 @@
                             </tr>
                         </thead>
                         <tbody data-bind="foreach: tabs">
-                            <tr data-bind="click: toggleChecked">
-                                <td style="width: 525px" data-bind="text: title">
+                            <tr>
+                                <td style="width: 525px" data-bind="text: details.title">
                                 </td>
                                 <td style="width: 75px">
                                     <input type="checkbox" data-bind="checked: convert()" />
