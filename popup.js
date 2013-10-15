@@ -1,10 +1,6 @@
 var Tab = function(chromeTab) {
     var self = this;
     
-    self.getAuthor = function() {
-        return "Smith, J."
-    };
-    
     self.getCreated = function() {
         return 'n.d.';
     };
@@ -13,22 +9,24 @@ var Tab = function(chromeTab) {
         return 'Website';
     };
     
-    self.getOrganisation = function() {
-        return 'Acme Corporation';
-    };
-    
-    self.getLocation = function() {
-        return 'Sydney';
-    };
+    self.getAccessed = function() {
+        var monthNames = [ "January", "February", "March", "April",
+        "May", "June", "July", "August", "September", "October", "November",
+        "December" ];
+        var now = new Date();
+        var s = 'viewed ';
+        s += now.getDate() + ' ';
+        s += monthNames[now.getMonth()] + ' ';
+        s += now.getFullYear();
+        return s;
+        
+    }
     
     self.details = {
-        author: self.getAuthor(),
         created: self.getCreated(),
         title: chromeTab.title,
         type: self.getWebsiteType(),
-        organisation: self.getOrganisation(),
-        location: self.getLocation(),
-        accessed: (new Date()).toDateString(),
+        accessed: self.getAccessed(),
         url: '<' + chromeTab.url + '>'
     };
     
