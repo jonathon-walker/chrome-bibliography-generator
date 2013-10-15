@@ -6,7 +6,7 @@ var Tab = function(chromeTab) {
     };
     
     self.getCreated = function() {
-        return (new Date()).toDateString();
+        return 'n.d.';
     };
     
     self.getWebsiteType = function() {
@@ -14,7 +14,7 @@ var Tab = function(chromeTab) {
     };
     
     self.getOrganisation = function() {
-        return self.getAuthor();
+        return 'Acme Corporation';
     };
     
     self.getLocation = function() {
@@ -32,7 +32,7 @@ var Tab = function(chromeTab) {
         url: '<' + chromeTab.url + '>'
     };
     
-    self.convert = ko.observable(true);
+    self.convert = ko.observable(false);
     
     self.toBibliography = function() {        
         return _.map(self.details, function(detail) {
@@ -44,7 +44,15 @@ var Tab = function(chromeTab) {
 var Page = function(tabs) {
     var self = this;
     self.tabs = ko.observableArray(tabs);
-    // self.bibliographies gets all ticked tabs and returns their bibliography.
+    self.bibliographies = ko.computed(function() {
+        var tabsToConvert = _.filter(self.tabs(), function(tab) {
+            return tab.convert();
+        });
+        
+        return _.map(tabsToConvert, function(tab) {
+            return tab.toBibliography();
+        });
+    });
 }
 
 $(document).ready(function() {
