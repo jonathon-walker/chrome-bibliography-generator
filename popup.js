@@ -10,7 +10,7 @@ var Tab = function(chromeTab) {
     };
     
     self.getWebsiteType = function() {
-        return '';
+        return 'Website';
     };
     
     self.getOrganisation = function() {

@@ -30,11 +30,10 @@
                                     <input type="checkbox" data-bind="checked: convert" />
                                 </td>
                             </tr>
-                            <!-- ko if: convert -->
-                            <tr>
-                                <td data-bind="text: toBibliography()"></td>
+                            <tr data-bind="visible: convert">
+                                <td style="width: 525px" data-bind="text: toBibliography()"></td>
+                                <td style="width: 75px"></td>
                             </tr>
-                            <!-- /ko -->
                         </tbody>
                     </table>
                 </div>
